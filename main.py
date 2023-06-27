@@ -92,6 +92,22 @@ def comparar_porcentagems(porcentagem_do_total, lista):
 
     print(f"A catraca com a porcentagem mais proxima da porcentagem total({porcentagem_do_total}%) é a {j}, com porcentagem de: {porcentagem_mais_prox}%.")
 
+# Função de complexidade fatorial O(2^N)
+def gerar_combinacoes_torcedores_casa(lista):
+    combinacoes = []
+    
+    n = len(lista)
+    for i in range(2**n):
+        combinacao = []
+        for j in range(n):
+            if i & (1 << j):
+                combinacao.append(lista[j][1])
+            else:
+                combinacao.append(0)
+        combinacoes.append(combinacao)
+    
+    return combinacoes
+
 if __name__ == '__main__':
     lista_geral = []
     
@@ -105,3 +121,5 @@ if __name__ == '__main__':
     imprimir_ordem_crescente(lista_geral)
     porcentagem_do_total = calcular_porcentagem(total_torcedores, total_casa)
     comparar_porcentagems(porcentagem_do_total, lista_geral)
+    combinacao = gerar_combinacoes_torcedores_casa(lista_geral)
+    print(combinacao)
